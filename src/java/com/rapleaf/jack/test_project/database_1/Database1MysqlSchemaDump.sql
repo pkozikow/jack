@@ -6,34 +6,34 @@
 
 DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
-  `content` CHAR default NULL,
-  `commenter_id` INTEGER NOT NULL default NULL,
-  `commented_on_id` INTEGER NOT NULL default NULL,
-  `created_at` DATE NOT NULL default 28800000
+  `content` CHAR,
+  `commenter_id` INTEGER NOT NULL,
+  `commented_on_id` INTEGER NOT NULL,
+  `created_at` DATE NOT NULL default '1970-01-01 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
-  `user_id` INTEGER default NULL
+  `user_id` INTEGER
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
-  `title` CHAR default NULL,
-  `posted_at_millis` DATE default NULL,
-  `user_id` INTEGER default NULL,
-  `updated_at` DATE default NULL
+  `title` CHAR,
+  `posted_at_millis` DATE,
+  `user_id` INTEGER,
+  `updated_at` DATE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `handle` CHAR NOT NULL default NULL,
-  `created_at_millis` INTEGER default NULL,
-  `num_posts` INTEGER NOT NULL default NULL,
-  `some_date` DATE default NULL,
-  `some_datetime` DATE default NULL,
-  `bio` CHAR default NULL,
-  `some_binary` BINARY default NULL,
-  `some_float` DOUBLE default NULL,
-  `some_boolean` BOOLEAN default NULL
+  `handle` CHAR NOT NULL,
+  `created_at_millis` INTEGER,
+  `num_posts` INTEGER NOT NULL,
+  `some_date` DATE,
+  `some_datetime` DATE,
+  `bio` CHAR,
+  `some_binary` BINARY,
+  `some_float` DOUBLE,
+  `some_boolean` BOOLEAN
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

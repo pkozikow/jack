@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `<%= model_defn.table_name %>`;
 CREATE TABLE `<%= model_defn.table_name %>` (
 <% model_defn.fields.each do |field| %>
   <% comma = field == model_defn.fields.last ? '' : ',' %>
-  `<%= field.name %>` <%= field.sql_type %><%= field.nullable? ? '' : ' NOT NULL' %> default <%= field.default_value || 'NULL' %><%= comma %>
+  `<%= field.name %>` <%= field.sql_type %><%= field.nullable? ? '' : ' NOT NULL' %><%= field.sql_default_value.nil? ? '' : " default #{field.sql_default_value}" %><%= comma %>
 <% end %>
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

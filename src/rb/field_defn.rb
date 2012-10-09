@@ -39,6 +39,14 @@ class FieldDefn
     @nullable
   end
 
+  def sql_default_value
+    return nil if @default_value.nil?
+    if @data_type == :datetime || @data_type == :date
+      return "'#{Time.at(@default_value / 1000).strftime('%Y-%m-%d %H:%M:%S')}'"
+    end
+    @default_val
+  end
+
   def is_long?
     !args[":limit"].nil? && args[":limit"].to_i > 4
   end
