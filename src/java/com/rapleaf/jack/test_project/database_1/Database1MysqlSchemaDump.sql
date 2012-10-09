@@ -6,34 +6,42 @@
 
 DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
-  `content` CHAR,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` TEXT,
   `commenter_id` INTEGER NOT NULL,
   `commented_on_id` INTEGER NOT NULL,
-  `created_at` DATE NOT NULL default '1970-01-01 00:00:00'
+  `created_at` DATETIME NOT NULL default '1970-01-01 00:00:00',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
-  `user_id` INTEGER
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INTEGER,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
-  `title` CHAR,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255),
   `posted_at_millis` DATE,
   `user_id` INTEGER,
-  `updated_at` DATE
+  `updated_at` DATETIME,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `handle` CHAR NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `handle` VARCHAR(255) NOT NULL,
   `created_at_millis` INTEGER,
   `num_posts` INTEGER NOT NULL,
   `some_date` DATE,
-  `some_datetime` DATE,
-  `bio` CHAR,
-  `some_binary` BINARY,
-  `some_float` DOUBLE,
-  `some_boolean` BOOLEAN
+  `some_datetime` DATETIME,
+  `bio` TEXT,
+  `some_binary` BLOB,
+  `some_float` FLOAT,
+  `some_boolean` TINYINT(1),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

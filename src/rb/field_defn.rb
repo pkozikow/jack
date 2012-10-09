@@ -126,6 +126,27 @@ class FieldDefn
     ret
   end
 
+  def mysql_schema_type
+    mappings = {
+      :integer=>'INTEGER', 
+      :string=>'VARCHAR(255)', 
+      :datetime=>'DATETIME', 
+      :varbinary=>'VARBINARY(20000)', 
+      :date=>'DATE', 
+      :text=>'TEXT', 
+      :binary=>'BLOB', 
+      :float=>'FLOAT', 
+      :boolean=>'TINYINT(1)',
+      :bigint=>'BIGINT',
+      :bytes=>'BINARY'
+    }
+    if ret = mappings[data_type]
+    else
+      raise "unknown db_type #{data_type}"
+    end
+    ret
+  end
+
 
   def prep_stmt_type()
     mappings = {

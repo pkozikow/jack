@@ -23,10 +23,11 @@
 
 DROP TABLE IF EXISTS `<%= model_defn.table_name %>`;
 CREATE TABLE `<%= model_defn.table_name %>` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
 <% model_defn.fields.each do |field| %>
-  <% comma = field == model_defn.fields.last ? '' : ',' %>
-  `<%= field.name %>` <%= field.sql_type %><%= field.nullable? ? '' : ' NOT NULL' %><%= field.sql_default_value.nil? ? '' : " default #{field.sql_default_value}" %><%= comma %>
+  `<%= field.name %>` <%= "#{field.mysql_schema_type}" %><%= field.nullable? ? '' : ' NOT NULL' %><%= field.sql_default_value.nil? ? '' : " default #{field.sql_default_value}" %>,
 <% end %>
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
