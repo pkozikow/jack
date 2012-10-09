@@ -141,6 +141,9 @@ class FieldDefn
       :bytes=>'BINARY'
     }
     if ret = mappings[data_type]
+      if data_type == :integer && is_long?
+        ret = 'BIGINT(20)'
+      end
     else
       raise "unknown db_type #{data_type}"
     end
