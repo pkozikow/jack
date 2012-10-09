@@ -41,6 +41,7 @@ EOF
   DB_IMPL_TEMPLATE = load_template("templates/db_impl.erb")
   MOCK_DB_IMPL_TEMPLATE = load_template("templates/mock_db_impl.erb")
   DB_FIXTURES_TEMPLATE = load_template("templates/db_fixtures.erb")
+  MYSQL_DB_SCHEMA_DUMP_TEMPLATE = load_template("templates/mysql_db_schema_dump.erb")
   PERSISTENCE_INTERFACE_TEMPLATE = load_template("templates/persistence_interface.erb")
   MOCK_PERSISTENCE_IMPL_TEMPLATE = load_template("templates/mock_persistence_impl.erb")
   MODEL_TEMPLATE = load_template("templates/model.erb")
@@ -130,6 +131,10 @@ EOF
     
     file = File.new("#{output_dir}/Base#{db_name}Fixtures.java", "w")
     file.puts(DB_FIXTURES_TEMPLATE.result(binding))
+    file.close
+
+    file = File.new("#{output_dir}/#{db_name}MysqlSchemaDump.sql", "w")
+    file.puts(MYSQL_DB_SCHEMA_DUMP_TEMPLATE.result(binding))
     file.close
     
   end
